@@ -40,7 +40,7 @@ const Layout = () => {
   const location = useLocation();
   const path = location.pathname;
   // const [isOpen, setIsOpen] = useState(false);
-  const { admin, loading, error, isOpen, setIsOpen, toggleSidebar } = useFilterContext()
+  const { admin, loading, error, isOpen, setIsOpen, toggleSidebar,adminShort } = useFilterContext()
 
   // const toggleSidebar = () => {
   //   setIsOpen(!isOpen);
@@ -52,6 +52,7 @@ const Layout = () => {
   //   );
   // if (error)
   //   return <p className="text-center text-red-500 text-lg">Error: {error}</p>;
+  console.log(adminShort)
   return (
     <div className="flex h-screen font-[Open_Sauce_Sans] overflow-x-hidden  bg-black text-white">
       {/* Mobile Toggle Button */}
@@ -138,12 +139,12 @@ const Layout = () => {
             <div className="flex mb-4 items-center gap-3">
               <Avatar className="h-8 w-8 border border-neutral-700">
                 <div className="bg-neutral-700 h-full w-full flex items-center justify-center text-xs text-white">
-                  {/* {admin.charAt(0)} */} S
+                  {adminShort}
                 </div>
               </Avatar>
               <div className="flex flex-col items-start">
                 <span className="text-sm text-white">
-                  {/* {admin} */} Starboomer
+                  {admin} 
                 </span>
                 <span className="text-xs text-neutral-400">Ver. 1.0</span>
               </div>
@@ -240,7 +241,7 @@ const Layout = () => {
           <div className="flex items-center gap-3">
             <Avatar className="h-8 w-8 border border-neutral-700">
               <div className="bg-neutral-700 h-full w-full flex items-center justify-center text-xs text-white">
-                {/* {admin.charAt(0)} */}S
+                {adminShort}
               </div>
             </Avatar>
             <div className="flex flex-col items-start">

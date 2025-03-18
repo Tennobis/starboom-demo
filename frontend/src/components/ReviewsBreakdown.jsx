@@ -49,7 +49,7 @@ export default function ReviewsBreakdown() {
       author: review.name || "Anonymous",
       rating: review.stars,
       content: review.text || "No text content",
-    }));
+    })).filter((review) =>review.stars);
   };
 
   // Function to calculate star distribution
@@ -213,14 +213,16 @@ export default function ReviewsBreakdown() {
                 <Info className="h-4 w-4 text-neutral-500" />
               </CardHeader>
               <CardContent className="space-y-1">
-                {recentReviews.map((review, index) => (
+                {recentReviews.length!=0?recentReviews.map((review, index) => (
                   <Review
                     key={index}
                     author={review.author}
                     rating={review.rating}
                     content={review.content}
                   />
-                ))}
+                )): <div className="pt-5 pb-3 px-3  rounded-md flex items-center justify-center">
+                <p className="text-sm text-neutral-500 font-medium">No reviews available yet</p>
+              </div>}
               </CardContent>
             </Card>
 

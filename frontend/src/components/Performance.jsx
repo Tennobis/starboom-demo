@@ -27,29 +27,32 @@ const ProgressLine = ({ completed, current, totalSegments = 16 }) => {
         setTotal(8); // fewer segments on mobile
       } 
       else if(width<770){
-        setTotal(7)
+        setTotal(6)
       }
-      else if(width==772){
+      else if(width<772){
         setTotal(8); 
       }
       else if(width<864){
-        setTotal(9)
+        setTotal(8)
       }
       else if(width<924){
         setTotal(10)
       }
-      else if(width ==988){
+      else if(width <1024){
         setTotal(12)
       }
+      else if(width<1030){
+        setTotal(7)
+      }
       else if (width < 1040) {
-        setTotal(8);
+        setTotal(12);
          // medium number on tablets
       }
       else if(width<1054){
         setTotal(8)
       }
       else if(width <1192){
-        setTotal(10)
+        setTotal(9)
       }
       else if(width < 1250){
         setTotal(12)
@@ -58,13 +61,19 @@ const ProgressLine = ({ completed, current, totalSegments = 16 }) => {
         setTotal(13)
       }
       else if(width<1406){
-        setTotal(15)
+        setTotal(14)
+      }
+      else if(width<1436){
+        setTotal(14)
       }
       else if(width<1500){
         setTotal(17)
       }
+      else if(width<1600){
+        setTotal(19)
+      }
        else {
-        setTotal(18); // full amount on desktop
+        setTotal(21); // full amount on desktop
       }
     };
     
@@ -109,27 +118,7 @@ const ProgressBadge = ({ icon, title, reviews, active, width, height }) => {
     const handleResize = () => {
       const width = window.innerWidth;
       
-      if (width < 480) {
-        // Extra small screens
-        setDimensions({
-          width: "w-[80px]",
-          height: "h-[90px]",
-          padding: "p-1",
-          textSize: "text-xs",
-          reviewSize: "text-[10px]",
-          margin: "mb-1"
-        });
-      } else if (width < 640) {
-        // Small screens
-        setDimensions({
-          width: "w-[100px]",
-          height: "h-[110px]",
-          padding: "p-1.5",
-          textSize: "text-xs",
-          reviewSize: "text-xs",
-          margin: "mb-1"
-        });
-      } else if (width <=768) {
+      if (width <768) {
         // Medium-small screens
         setDimensions({
           width: "w-[120px]",
@@ -674,9 +663,9 @@ export default function Performance() {
                   <div className=" flex flex-col items-start">
                     <p className="text-sm mb-2 text-neutral-400">Before</p>
                     <div className="flex gap-2 items-end">
-                      <h2 className="text-4xl font-bold">6</h2>
+                      <h2 className="text-4xl font-bold">4</h2>
                       <p className="text-xs mb-1 text-neutral-400">
-                        reviews & average <br /> of 4.2 Stars
+                        reviews & average <br /> of 5 Stars
                       </p>
                     </div>
                   </div>
@@ -689,7 +678,7 @@ export default function Performance() {
                     </p>
                     <div className="flex gap-2 items-end">
                       <h2 className="text-4xl font-bold">
-                        {placeInfo ? placeInfo.reviewsCount - 6 : "N/A"}
+                        {placeInfo ? placeInfo.reviewsCount - 4 : "N/A"}
                       </h2>
                       <p className="text-xs mb-1 text-neutral-400">
                         reviews & average <br /> of{" "}

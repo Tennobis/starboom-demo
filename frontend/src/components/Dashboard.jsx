@@ -33,7 +33,6 @@ import { Icon } from "@iconify/react";
 import Loader from "./Loader";
 import { useNavigate } from "react-router-dom";
 
-
 export function Dashboard() {
   const navigate = useNavigate();
   const {
@@ -48,23 +47,20 @@ export function Dashboard() {
     negative,
     determineMilestone,
     milestones,
-    toggleSidebar
-  } = useFilterContext()
+    toggleSidebar,
+  } = useFilterContext();
 
-  const [ina, setIna] = useState(' a week');
+  const [ina, setIna] = useState(" a week");
   useEffect(() => {
-
     if (selectedOption === "last-90-days") {
-      setIna(' 3 months')
+      setIna(" 3 months");
     } else if (selectedOption === "last-30-days") {
-      setIna(' a month')
+      setIna(" a month");
     } else {
-      setIna(' a week')
+      setIna(" a week");
     }
-
-  }, [loading])
+  }, [loading]);
   const getCurrentLevelProgress = (count, currentMilestoneObj) => {
-
     const range =
       currentMilestoneObj.maxReviews - currentMilestoneObj.minReviews;
     const progress = count - currentMilestoneObj.minReviews;
@@ -78,13 +74,9 @@ export function Dashboard() {
     (m) => m.title === currentMilestone
   );
 
-  if (loading)
-    return (
-      <Loader />
-    );
+  if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-red-500 text-lg">Error: {error}</p>;
-
 
   return (
     <div className="min-h-screen relative bg-black p-6 px-8">
@@ -97,7 +89,8 @@ export function Dashboard() {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          background: "radial-gradient(circle, rgba(67, 133, 255, 0.26) 0%, rgba(0, 0, 0, 0) 70%)",
+          background:
+            "radial-gradient(circle, rgba(67, 133, 255, 0.26) 0%, rgba(0, 0, 0, 0) 70%)",
           zIndex: "0",
         }}
       />
@@ -106,7 +99,11 @@ export function Dashboard() {
           <div className="flex items-center w-full lg:w-auto justify-between ">
             <h1 className="text-4xl hidden lg:block text-white">Dashboard</h1>
             <div className="flex items-center justify-between w-full ">
-              <img src="/starboom.png" alt="logo" className="lg:hidden block h-14 w-12" />
+              <img
+                src="/starboom.png"
+                alt="logo"
+                className="lg:hidden block h-14 w-12"
+              />
               <Icon
                 icon="tabler:menu-deep"
                 width="32"
@@ -131,7 +128,15 @@ export function Dashboard() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-4 mb-8">
             <div className="flex flex-col gap-2">
               <h2 className="text-2xl text-white">Overview</h2>
-              <p className="text-neutral-400 text-xs">Overall {ina == " 3 months" ? "quaterly" : ina == " a month" ? "monthly" : "weekly"} performance</p>
+              <p className="text-neutral-400 text-xs">
+                Overall{" "}
+                {ina == " 3 months"
+                  ? "quaterly"
+                  : ina == " a month"
+                  ? "monthly"
+                  : "weekly"}{" "}
+                performance
+              </p>
             </div>
 
             <FilterBar />
@@ -145,13 +150,18 @@ export function Dashboard() {
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium">
                     <div className="flex items-center">
-                      <Icon icon="mdi:sparkles" width="24" height="24" className="mr-2" />
+                      <Icon
+                        icon="mdi:sparkles"
+                        width="24"
+                        height="24"
+                        className="mr-2"
+                      />
                       <h1 className="text-lg">Total Ratings</h1>
                     </div>
                   </CardTitle>
                   <Info className="h-4 w-4 text-neutral-500" />
                 </CardHeader>
-                <CardContent className=''>
+                <CardContent className="">
                   {/* <div>
                 <div className="text-3xl  font-bold mb-1">
                   {placeInfo[0].reviewsCount}
@@ -172,7 +182,12 @@ export function Dashboard() {
                   <CardTitle className="text-sm font-medium">
                     <div className="flex items-center">
                       {/* <Star className="h-4 w-4 mr-2 text-blue-400" /> */}
-                      <Icon icon="material-symbols:star-rounded" width="24" height="24" className="mr-2" />
+                      <Icon
+                        icon="material-symbols:star-rounded"
+                        width="24"
+                        height="24"
+                        className="mr-2"
+                      />
                       <h1 className="text-lg">Average Ratings</h1>
                     </div>
                   </CardTitle>
@@ -180,7 +195,7 @@ export function Dashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-4xl font-bold">
-                    {placeInfo ? placeInfo.totalScore : 'N/A'}
+                    {placeInfo ? placeInfo.totalScore : "N/A"}
                   </div>
                   <div className="flex items-center mt-7 text-xs text-[var(--color-secondary)]">
                     <span>in total</span>
@@ -192,15 +207,21 @@ export function Dashboard() {
                 <CardHeader className="flex flex-row items-center justify-between pb-7">
                   <CardTitle className="text-sm font-medium">
                     <div className="flex items-center">
-                      <Icon icon="mdi:people" width="24" height="24" className="mr-2" />
+                      <Icon
+                        icon="mdi:people"
+                        width="24"
+                        height="24"
+                        className="mr-2"
+                      />
                       <h1 className="text-lg">Reviews Earned</h1>
-
                     </div>
                   </CardTitle>
                   <Info className="h-4 w-4 text-neutral-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-4xl font-bold">{placeInfo ? placeInfo.reviewsCount : 'N/A'}</div>
+                  <div className="text-4xl font-bold">
+                    {placeInfo ? placeInfo.reviewsCount : "N/A"}
+                  </div>
                   <div className="flex items-center mt-7 text-xs text-[var(--color-secondary)]">
                     <span>in total</span>
                   </div>
@@ -216,9 +237,13 @@ export function Dashboard() {
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">
                   <div className="flex items-center">
-                    <Icon icon="ix:compare" width="24" height="24" className="mr-2 rotate-90" />
+                    <Icon
+                      icon="ix:compare"
+                      width="24"
+                      height="24"
+                      className="mr-2 rotate-90"
+                    />
                     <h1 className="text-lg">Positive vs Negative</h1>
-
                   </div>
                 </CardTitle>
                 <Info className="h-4 w-4 text-neutral-500" />
@@ -262,7 +287,12 @@ export function Dashboard() {
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">
                   <div className="flex items-center">
-                    <Icon icon="material-symbols:trophy" width="24" height="24" className="mr-2" />
+                    <Icon
+                      icon="material-symbols:trophy"
+                      width="24"
+                      height="24"
+                      className="mr-2"
+                    />
                     <h1 className="text-lg">Milestone</h1>
                   </div>
                 </CardTitle>
@@ -273,26 +303,34 @@ export function Dashboard() {
                   <div className="flex justify-start gap-4 items-center w-full">
                     <div className="w-16 h-16  rounded-full flex items-center justify-center mb-3">
                       {currentMilestoneObj && (
-                        <img src={currentMilestoneObj.icon} alt="milestone" />)}
+                        <img src={currentMilestoneObj.icon} alt="milestone" />
+                      )}
                     </div>
                     <div className="flex-col flex items-start justify-center">
-                      <h3 className="text-lg font-semibold mb-1">{currentMilestoneObj.title}</h3>
-                      <p className="text-sm text-neutral-400 mb-3">{currentMilestoneObj.minReviews} stars completed!</p>
-
+                      <h3 className="text-lg font-semibold mb-1">
+                        {currentMilestoneObj.title}
+                      </h3>
+                      <p className="text-sm text-neutral-400 mb-3">
+                        {" "}
+                        {currentMilestoneObj.minReviews === 0
+                          ? "Let the journey begin!"
+                          : `${currentMilestoneObj.minReviews} reviews completed!`}
+                      </p>
                     </div>
-
                   </div>
                   <div className="w-full bg-neutral-700 rounded-full h-2 mb-2">
                     {milestones[milestones.indexOf(currentMilestoneObj) + 1] ? (
                       <Progress
-                        value={getCurrentLevelProgress(placeInfo.reviewsCount, currentMilestoneObj)}
+                        value={getCurrentLevelProgress(
+                          placeInfo.reviewsCount,
+                          currentMilestoneObj
+                        )}
                         className={cn(
                           "h-2",
                           "bg-neutral-700",
                           `${currentMilestoneObj.color}`
                         )}
                       />
-
                     ) : (
                       <Progress
                         value={100}
@@ -305,12 +343,17 @@ export function Dashboard() {
                     )}
                   </div>
                   <p className="text-xs text-neutral-400">
-                    {milestones[milestones.indexOf(currentMilestoneObj) + 1] ? (
-                      `Earn ${milestones[milestones.indexOf(currentMilestoneObj) + 1].minReviews - placeInfo.reviewsCount} more stars to become a ${milestones[milestones.indexOf(currentMilestoneObj) + 1].title}.`
-                    ) : (
-                      `Congratulations! You've completed all of the milestones.`
-                    )
-                    }
+                    {milestones[milestones.indexOf(currentMilestoneObj) + 1]
+                      ? `Earn ${
+                          milestones[
+                            milestones.indexOf(currentMilestoneObj) + 1
+                          ].minReviews - placeInfo.reviewsCount
+                        } more reviews to become a ${
+                          milestones[
+                            milestones.indexOf(currentMilestoneObj) + 1
+                          ].title
+                        }.`
+                      : `Congratulations! You've completed all of the milestones.`}
                   </p>
                 </div>
               </CardContent>
@@ -321,7 +364,12 @@ export function Dashboard() {
               <CardHeader className="flex flex-row items-center justify-between pb-7">
                 <CardTitle className="text-sm font-medium">
                   <div className="flex items-center">
-                    <Icon icon="icon-park-solid:bad-two" width="24" height="24" className="mr-2" />
+                    <Icon
+                      icon="icon-park-solid:bad-two"
+                      width="24"
+                      height="24"
+                      className="mr-2"
+                    />
                     <h1 className="text-lg">Negative Review Alert</h1>
                   </div>
                 </CardTitle>
@@ -330,14 +378,18 @@ export function Dashboard() {
               <CardContent>
                 <div className="flex items-center justify-between ">
                   <div className="flex items-end gap-2">
-
-                    <div className="text-4xl font-bold text-[var(--color-red)]">{negative}</div>
-                    <p className="text-[11px] mb-1 text-[var(--color-secondary)]">Bad review</p>
+                    <div className="text-4xl font-bold text-[var(--color-red)]">
+                      {negative}
+                    </div>
+                    <p className="text-[11px] mb-1 text-[var(--color-secondary)]">
+                      Bad review
+                    </p>
                   </div>
                   <Button
                     variant="outline"
                     className="bg-white rounded-full border-neutral-700 text-black hover:bg-neutral-700 h-9 font-bold"
-                    onClick={() => navigate('/notification')}>
+                    onClick={() => navigate("/notification")}
+                  >
                     Manage
                   </Button>
                 </div>

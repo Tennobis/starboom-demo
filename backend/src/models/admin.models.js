@@ -65,9 +65,9 @@ adminSchema.statics.initAdmin = async function () {
             username:process.env.ADMIN_USERNAME,
             password:process.env.ADMIN_PASSWORD,
             milestones: new Map([
-              ["simple-bar", { current: "Beginner", previous: null }],
-              ["complex-bar", { current: "Beginner", previous: null }],
-              ["bad-bar", { current: "Beginner", previous: null }],
+              ["sd-fashion", { current: "Beginner", previous: null }],
+              // ["complex-bar", { current: "Beginner", previous: null }],
+              // ["bad-bar", { current: "Beginner", previous: null }],
             ]),
       
         })

@@ -65,12 +65,15 @@ const getReviews = async (req, res) => {
       day,
       reviews: reviewsByMonth[day],
     }));
-    
+    const reviewsData = simplifiedReviews.filter(
+      (review) => review.type === "placeInfo"
+    );
     const analysisResult = await generateSentimentAnalysis(items);
     res.json({
       simplifiedReviews,
       reviewsChartData,
       sentimentAnalysis: analysisResult,
+      reviewsData
     });
   } catch (error) {
     console.error("Error occurred:", error);

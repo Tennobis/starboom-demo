@@ -6,7 +6,7 @@ const FilterContext = createContext();
 
 // Create a provider component
 export const FilterProvider = ({ children }) => {
-  const [selectedPlace, setSelectedPlace] = useState("simple-bar");
+  const [selectedPlace, setSelectedPlace] = useState("sd-fashion");
   const [selectedOption, setSelectedOption] = useState("last-7-days");
   const [url, setUrl] = useState(
     "https://www.google.com/maps/place/Techno+India+University/@22.5760026,88.4259374,17z/data=!3m1!4b1!4m6!3m5!1s0x39f970ae9a2e19b5:0x16c43b9069f4b159!8m2!3d22.5760026!4d88.4285123!16s%2Fm%2F0k3lkpp?entry=ttu&g_ep=EgoyMDI1MDIyNi4xIKXMDSoASAFQAw%3D%3D"
@@ -40,14 +40,13 @@ export const FilterProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [redOrGreen, setRedOrGreen] = useState(false);
   const [redOrGreenScan, setRedOrGreenScan] = useState(false);
+  const [adminShort, setAdminShort] = useState('S')
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
   const placeNames = [
-    "Techno India University, West Bengal",
-    "Techno Main Salt Lake",
-    "Salt Pepper",
+    "Baazar Kolkata - B M Banerjee Road",
   ];
   useEffect(() => {
     // Fetch counts from the backend
@@ -65,6 +64,8 @@ export const FilterProvider = ({ children }) => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/api/get-admin`);
         const data = await response.json();
+        const firstAlphabet=data.username.charAt(0)
+        setAdminShort(firstAlphabet)
         setAdmin(data.username);
         if (response.ok) {
           // console.log("Admin username:", data.username);
@@ -163,8 +164,8 @@ export const FilterProvider = ({ children }) => {
   };
 
   const placeOptions = {
-    "simple-bar":
-      "https://www.google.com/maps/place/Techno+India+University/@22.5760026,88.4259374,17z/data=!3m1!4b1!4m6!3m5!1s0x39f970ae9a2e19b5:0x16c43b9069f4b159!8m2!3d22.5760026!4d88.4285123!16s%2Fm%2F0k3lkpp?entry=ttu&g_ep=EgoyMDI1MDIyNi4xIKXMDSoASAFQAw%3D%3D",
+    "sd-fashion":
+      "https://www.google.com/maps/place/S.D.+Collection/@22.6674352,88.3361166,14z/data=!4m10!1m2!2m1!1ssd+collection!3m6!1s0x39f89dd782b667f5:0x7f3f576143ac63d0!8m2!3d22.6674352!4d88.3742254!15sCg1zZCBjb2xsZWN0aW9ukgEOY2xvdGhpbmdfc3RvcmXgAQA!16s%2Fg%2F11v1b32_51?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D",
     "complex-bar":
       "https://www.google.com/maps/place/Ice+and+Spice/@22.58638,88.150382,12z/data=!4m10!1m2!2m1!1sice+and+spice!3m6!1s0x39f89df5db8af2dd:0x82687ddd6415ff25!8m2!3d22.6160565!4d88.3874674!15sCg1pY2UgYW5kIHNwaWNlWg8iDWljZSBhbmQgc3BpY2WSAQpyZXN0YXVyYW504AEA!16s%2Fg%2F1vxdwq3x?entry=ttu&g_ep=EgoyMDI1MDMxMi4wIKXMDSoASAFQAw%3D%3D",
     "bad-bar":
@@ -198,9 +199,9 @@ export const FilterProvider = ({ children }) => {
     let negative = 0;
 
     reviews.forEach((review) => {
-      if (review.stars >= 3) {
+      if (review.stars >= 3 && !review.error) {
         positive++;
-      } else {
+      } else if(review.stars <3 && !review.error) {
         negative++;
       }
     });
@@ -245,8 +246,8 @@ export const FilterProvider = ({ children }) => {
       const { positive: pos, negative: neg } = calculateSentiment(reviewsData);
 
       const numReview = pos + neg;
-      const percP = ((pos / numReview) * 100).toFixed(0);
-      const percN = ((neg / numReview) * 100).toFixed(0);
+      const percP = numReview===0 ?0 : ((pos / numReview) * 100).toFixed(0);
+      const percN =numReview===0 ?0 :((neg / numReview) * 100).toFixed(0);
 
       // setPlaceInfo(placeData);
       setPositive(pos);
@@ -264,7 +265,7 @@ export const FilterProvider = ({ children }) => {
       }
 
       // Filter negative reviews
-      const negativeReviews = reviewsData.filter((review) => review.stars < 3);
+      const negativeReviews = reviewsData.filter((review) =>review.stars < 3 && !review.error);
       setNegativeReviews(negativeReviews);
 
       setLoading(false);
@@ -404,7 +405,8 @@ export const FilterProvider = ({ children }) => {
         setIsOpen,
         toggleSidebar,
         redOrGreen,
-        redOrGreenScan
+        redOrGreenScan,
+        adminShort
       }}
     >
       {children}

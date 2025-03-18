@@ -27,13 +27,13 @@ const FilterBar = () => {
             <SelectTrigger className="w-full rounded-full px-4 lg:w-60 sm:w-full bg-custom-gradient border-neutral-700 text-white">
               <div className='flex items-center gap-1 justify-between'>
                 <Icon icon="material-symbols:store-outline" width="20" height="20" className="mr-2" />
-                <SelectValue placeholder="Simple Bar" />
+                <SelectValue placeholder="SD Fashion" />
               </div>
             </SelectTrigger>
             <SelectContent className='bg-custom-gradient text-white border-none'>
-              <SelectItem value="simple-bar">Simple Bar</SelectItem>
-              <SelectItem value="complex-bar">Complex Bar</SelectItem>
-              <SelectItem value="bad-bar">Bad Bar</SelectItem>
+              <SelectItem value="sd-fashion">SD Fashion</SelectItem>
+              {/* <SelectItem value="complex-bar">Complex Bar</SelectItem>
+              <SelectItem value="bad-bar">Bad Bar</SelectItem> */}
             </SelectContent>
           </Select>
         </div>

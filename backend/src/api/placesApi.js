@@ -55,7 +55,7 @@ async function main(req, res) {
         .json({ error: "Missing or invalid 'query' parameter" });
     }
     const placeId = await getPlaceId(inputText.trim());
-    const placeDetails = await getPlaceDetails(placeId);
+    const placeDetails = await getPlaceDetails('ChIJAaR8VzOc-DkR-EKvvzGrM1M');
     res.status(200).json({ placeId, placeDetails });
   } catch (error) {
     console.error("Error:", error);

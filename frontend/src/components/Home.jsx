@@ -54,9 +54,9 @@ export default function Home() {
 
           {/* Text and button section at bottom */}
           <div className="flex flex-col mb-4">
-            <h1 className="text-6xl md:text-6xl font-medium mb-2 text-left">
-              <span className="text-white">Share Your </span><br className='hidden' />
-              <span className="text-gradient-gold">Valuable</span><br className='hidden' />
+            <h1 className="text-5xl md:text-6xl font-medium mb-2 text-left">
+              <span className="text-white">Share Your </span><br className='md:hidden' />
+              <span className="text-gradient-gold">Valuable</span><br className='md:hidden' />
               <span className="text-white"> Feedback!</span>
             </h1>
 
