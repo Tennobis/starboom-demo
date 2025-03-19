@@ -72,12 +72,13 @@ const ReviewsChart = ({ ina }) => {
         a.interval.localeCompare(b.interval, undefined, { numeric: true })
       );
   }, [chartData]);
+  console.log(chart)
 
   return (
     <>
       <div>
         <div className="flex items-center mt-7 mb-4 justify-start">
-          <div className="text-4xl z-50 font-bold">{chartData.length}</div>
+          <div className="text-4xl z-50 font-bold">{chartData[0].reviews}</div>
           <div className="text-xs  text-[var(--color-secondary)] mt-4 pl-3">
             in {ina}
           </div>

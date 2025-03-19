@@ -49,7 +49,7 @@ export default function ReviewsBreakdown() {
       author: review.name || "Anonymous",
       rating: review.stars,
       content: review.text || "No text content",
-    })).filter((review) =>review.stars);
+    })).filter((review) =>review.rating !== undefined && review.rating !== null);
   };
 
   // Function to calculate star distribution
