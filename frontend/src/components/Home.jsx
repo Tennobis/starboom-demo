@@ -15,7 +15,7 @@ export default function Home() {
     window.open('https://g.page/r/CdBjrENhVz9_EAE/review', "_blank");
   };
   return (
-    <div className="h-screen bg-black text-white">
+    <div className="md:h-screen h-[100dvh] bg-black text-white">
       <div className="h-full flex flex-col items-center relative">
         {/* Background image */}
         <img
