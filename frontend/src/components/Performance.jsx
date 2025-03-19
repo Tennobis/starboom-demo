@@ -19,70 +19,70 @@ import Loader from "./Loader";
 
 const ProgressLine = ({ completed, current, totalSegments = 16 }) => {
   const [total, setTotal] = React.useState(totalSegments || 16);
-    useEffect(() => {
+  useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       // Adjust number of segments based on screen width
       if (width < 640) {
         setTotal(8); // fewer segments on mobile
-      } 
-      else if(width<770){
+      }
+      else if (width < 770) {
         setTotal(6)
       }
-      else if(width<772){
-        setTotal(8); 
+      else if (width < 772) {
+        setTotal(8);
       }
-      else if(width<864){
+      else if (width < 864) {
         setTotal(8)
       }
-      else if(width<924){
+      else if (width < 924) {
         setTotal(10)
       }
-      else if(width <1024){
+      else if (width < 1024) {
         setTotal(12)
       }
-      else if(width<1030){
+      else if (width < 1030) {
         setTotal(7)
       }
       else if (width < 1040) {
         setTotal(12);
-         // medium number on tablets
+        // medium number on tablets
       }
-      else if(width<1054){
+      else if (width < 1054) {
         setTotal(8)
       }
-      else if(width <1192){
+      else if (width < 1192) {
         setTotal(9)
       }
-      else if(width < 1250){
+      else if (width < 1250) {
         setTotal(12)
       }
-      else if(width<1300){
+      else if (width < 1300) {
         setTotal(13)
       }
-      else if(width<1406){
+      else if (width < 1406) {
         setTotal(14)
       }
-      else if(width<1436){
+      else if (width < 1436) {
         setTotal(14)
       }
-      else if(width<1500){
+      else if (width < 1500) {
         setTotal(17)
       }
-      else if(width<1600){
+      else if (width < 1600) {
         setTotal(19)
       }
-       else {
+      else {
         setTotal(21); // full amount on desktop
       }
     };
-    
+
     // Set initial value
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, [totalSegments]);
@@ -112,13 +112,13 @@ const ProgressBadge = ({ icon, title, reviews, active, width, height }) => {
     reviewSize: "text-xs",
     margin: "mb-2"
   });
-  
+
   // Effect to update dimensions based on window width
   React.useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      
-      if (width <768) {
+
+      if (width < 768) {
         // Medium-small screens
         setDimensions({
           width: "w-[120px]",
@@ -160,7 +160,7 @@ const ProgressBadge = ({ icon, title, reviews, active, width, height }) => {
           margin: "mb-2"
         });
       }
-       else {
+      else {
         // Large screens
         setDimensions({
           width: "w-[141px]",
@@ -172,13 +172,13 @@ const ProgressBadge = ({ icon, title, reviews, active, width, height }) => {
         });
       }
     };
-    
+
     // Set initial dimensions
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -342,77 +342,93 @@ const ProgressSection = ({ milestones, currentMilestone, reviewsCount }) => {
       {/* Mobile view - vertical layout */}
 
       <div className="flex flex-col md:hidden w-full">
-        {milestones.map((milestone, index) => (
-          <div
-            key={`mobile-progress-${index}`}
-            className="flex items-center mb-8 relative"
-          >
-            <div className="flex">
-              {/* Badge and progress circle container */}
-              <div className="flex gap-4  ml-0 items-center justify-between">
-                {/* Badge icon first */}
-                <ProgressBadge
-                  width='w-[111px]'
-                  height='h-[128px]'
-                  icon={milestone.icon}
-                  active={currentMilestone === milestone.title}
-                />
+        {milestones.map((milestone, index) => {
+          // Calculate progress for this milestone
+          const isCompleted = reviewsCount > milestone.maxReviews;
+          const isCurrent = currentMilestone === milestone.title;
 
-                {/* Progress circle after badge */}
-                <div className="mt-6">
-                  <div
-                    className={`left-1/2 top-1/2 -translate-y-1/2 -translate-x-3 w-6 h-6 rounded-full flex items-center justify-center z-10
+          // Calculate percentage progress for current milestone
+          const currentProgress = isCurrent
+            ? (reviewsCount / milestone.maxReviews) * 100
+            : isCompleted ? 100 : 0;
+
+          return (
+            <div
+              key={`mobile-progress-${index}`}
+              className="flex items-center mb-8 relative"
+            >
+              <div className="flex">
+                {/* Badge and progress circle container */}
+                <div className="flex gap-4  ml-0 items-center justify-between">
+                  {/* Badge icon first */}
+                  <ProgressBadge
+                    width='w-[111px]'
+                    height='h-[128px]'
+                    icon={milestone.icon}
+                    active={currentMilestone === milestone.title}
+                  />
+
+                  {/* Progress circle after badge */}
+                  <div className="mt-6">
+                    <div
+                      className={`left-1/2 top-1/2 -translate-y-1/2 -translate-x-3 w-6 h-6 rounded-full flex items-center justify-center z-10
               ${reviewsCount > milestone.maxReviews
-                        ? "bg-[var(--color-green)]"
-                        : currentMilestone === milestone.title
                           ? "bg-[var(--color-green)]"
-                          : "bg-[var(--color-eclipse)]"
-                      }`}
-                  >
-                    {reviewsCount && (
-                      <div className=" text-[var(--color-in-tick)]">
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                        // className="text-[var(--color-in-tick)]"
-                        >
-                          <path d="M20 6L9 17L4 12" />
-                        </svg>
-                      </div>
-                    )}
+                          : currentMilestone === milestone.title
+                            ? "bg-[var(--color-green)]"
+                            : "bg-[var(--color-eclipse)]"
+                        }`}
+                    >
+                      {reviewsCount && (
+                        <div className=" text-[var(--color-in-tick)]">
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                          // className="text-[var(--color-in-tick)]"
+                          >
+                            <path d="M20 6L9 17L4 12" />
+                          </svg>
+                        </div>
+                      )}
 
-                    {/* Vertical dotted line between badge and text */}
-                    {index < milestones.length - 1 && (
-                      <div className="absolute mt-2 left-1/2 top-full flex flex-col gap-2">
-                        {[...Array(8)].map((_, dotIndex) => (
-                          <div
-                            key={dotIndex}
-                            className={`h-2 w-1 rounded-full
-                    ${reviewsCount > milestone.maxReviews
-                                ? "bg-[var(--color-green)]"
-                                : "bg-[var(--color-bodcol)]"
-                              }`}
-                          />
-                        ))}
-                      </div>
-                    )}
+                      {/* Vertical dotted line between badge and text */}
+                      {index < milestones.length - 1 && (
+                        <div className="absolute mt-2 left-1/2 top-full flex flex-col gap-2">
+                          {[...Array(8)].map((_, dotIndex) => (
+                            <div
+                              key={dotIndex}
+                              className={`h-2 w-1 rounded-full
+          ${reviewsCount > milestone.maxReviews
+                                  ? "bg-[var(--color-green)]"
+                                  : reviewsCount >= milestone.minReviews &&
+                                    reviewsCount <= milestone.maxReviews ?
+                                    dotIndex < Math.floor((getCurrentLevelProgress(reviewsCount) / 100) * 8)
+                                      ? "bg-[var(--color-green)]"
+                                      : "bg-[var(--color-bodcol)]"
+                                    : "bg-[var(--color-bodcol)]"
+                                }`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
                   </div>
-
                 </div>
-              </div>
-              <div className="ml-3 mt-11">
-                <div className="font-medium text-sm">{milestone.title}</div>
-                <div className="text-xs text-gray-500">
-                  {milestone.reviews}
+                <div className="ml-3 mt-11">
+                  <div className="font-medium text-sm">{milestone.title}</div>
+                  <div className="text-xs text-gray-500">
+                    {milestone.reviews}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   );
@@ -714,9 +730,9 @@ export default function Performance() {
 
                     <div className={`flex items-center mt-2 text-[10px] ${redOrGreenScan ? 'text-[var(--color-green)]' : 'text-[var(--color-red)]'} `}>
                       {redOrGreenScan ? <ArrowUpRight className="h-3 w-3 mr-1" /> : <ArrowDownLeft className="h-3 w-3 mr-1" />}
-                      
+
                       {countRate} %
-                      <span className="text-white ml-1"> {redOrGreenScan? 'improved' : 'decreased'} from last week</span>
+                      <span className="text-white ml-1"> {redOrGreenScan ? 'improved' : 'decreased'} from last week</span>
                     </div>
                   </div>
                 </CardContent>
@@ -743,9 +759,9 @@ export default function Performance() {
                     <div className="text-4xl mt-2 font-bold">{click}</div>
 
                     <div className={`flex items-center text-[10px] mt-2 ${redOrGreenScan ? 'text-[var(--color-green)]' : 'text-[var(--color-red)]'} `}>
-                    {redOrGreen ? <ArrowUpRight className="h-3 w-3 mr-1" /> : <ArrowDownLeft className="h-3 w-3 mr-1" />}
+                      {redOrGreen ? <ArrowUpRight className="h-3 w-3 mr-1" /> : <ArrowDownLeft className="h-3 w-3 mr-1" />}
                       {clickRate} %
-                      <span className="text-white ml-1"> {redOrGreen? 'improved' : 'decreased'} from last week</span>
+                      <span className="text-white ml-1"> {redOrGreen ? 'improved' : 'decreased'} from last week</span>
                     </div>
                   </div>
                 </CardContent>
