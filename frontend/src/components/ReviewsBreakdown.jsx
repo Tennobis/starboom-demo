@@ -10,7 +10,7 @@ import { Separator } from "./ui/separator";
 import { Icon } from "@iconify/react";
 import Loader from "./Loader";
 
-const Review = ({ author, rating, content }) => {
+const Review = ({ author, rating, content, date }) => {
   return (
     <div className="py-3 border-b border-neutral-800 last:border-0">
       <div className="flex justify-between items-start mb-1">
@@ -35,20 +35,48 @@ const Review = ({ author, rating, content }) => {
           ))}
         </div>
       </div>
+      <div className="flex flex-col gap-2 items-start">
+
       <p className="text-sm text-neutral-400">{content}</p>
+      <p className="text-xs text-neutral-400">{date}</p>
+      </div>
     </div>
   );
 };
 
 export default function ReviewsBreakdown() {
   const { reviews, loading, error, analysis, toggleSidebar } = useFilterContext();
-
+  const timeAgo = (isoString) => {
+    const now = new Date();
+    const past = new Date(isoString);
+    const diffInSeconds = Math.floor((now - past) / 1000);
+  
+    if (diffInSeconds < 60) return "just now";
+  
+    const timeUnits = [
+      { unit: "month", seconds: 2592000 }, // 30 days
+      { unit: "week", seconds: 604800 },
+      { unit: "day", seconds: 86400 },
+      { unit: "hour", seconds: 3600 },
+      { unit: "minute", seconds: 60 },
+    ];
+  
+    for (const { unit, seconds } of timeUnits) {
+      const count = Math.floor(diffInSeconds / seconds);
+      if (count >= 1) return `${count} ${unit}${count > 1 ? "s" : ""} ago`;
+    }
+  };
+  
+  // Example usage:
+  console.log(timeAgo("2025-03-19T09:57:11.809Z"));
+  
   // Function to get recent reviews
   const getRecentReviews = () => {
     return reviews.map((review) => ({
       author: review.name || "Anonymous",
       rating: review.stars,
       content: review.text || "No text content",
+      date: timeAgo(review.publishedAtDate),
     })).filter((review) =>review.rating !== undefined && review.rating !== null);
   };
 
@@ -219,6 +247,7 @@ export default function ReviewsBreakdown() {
                     author={review.author}
                     rating={review.rating}
                     content={review.content}
+                    date={review.date}
                   />
                 )): <div className="pt-5 pb-3 px-3  rounded-md flex items-center justify-center">
                 <p className="text-sm text-neutral-500 font-medium">No reviews available yet</p>

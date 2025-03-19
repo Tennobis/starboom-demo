@@ -39,7 +39,7 @@ const Login = () => {
         <div className="space-y-6">
           <div>
             <h2 className="text-xl text-white mb-2">Login</h2>
-            <p className="text-zinc-400">Please login again to continue using the application.</p>
+            <p className="text-zinc-400">Please login again to continue using the software.</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
@@ -74,14 +74,14 @@ const Login = () => {
             <div className="flex items-center justify-end space-x-4">
               <button
                 type="button"
-                className="px-4 py-2 border border-white rounded-lg text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                className="px-4 py-2 border border-white cursor-pointer rounded-lg text-sm font-medium text-zinc-400 hover:text-white transition-colors"
                 onClick={() => navigate('/scan')}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-white text-black text-sm font-medium rounded-md hover:bg-gray-100 transition-colors"
+                className="px-4 py-2 bg-white cursor-pointer text-black text-sm font-medium rounded-md hover:bg-gray-100 transition-colors"
               >
                 Login
               </button>
