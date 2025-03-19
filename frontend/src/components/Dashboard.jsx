@@ -387,7 +387,7 @@ export function Dashboard() {
                   </div>
                   <Button
                     variant="outline"
-                    className="bg-white rounded-full border-neutral-700 text-black hover:bg-neutral-700 h-9 font-bold"
+                    className="bg-white rounded-full border-neutral-700 text-black hover:bg-neutral-700 h-9 font-bold cursor-pointer"
                     onClick={() => navigate("/notification")}
                   >
                     Manage
