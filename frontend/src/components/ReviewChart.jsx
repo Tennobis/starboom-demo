@@ -63,7 +63,7 @@ const ReviewsChart = ({ ina }) => {
           key = getDayName(publishedDate);
       }
 
-      groupedData[key] = (groupedData[key] || 0) + 1;
+      groupedData[key] = (groupedData[key] || 0) + (review.reviews || 1);
     });
 
     return Object.entries(groupedData)
@@ -72,7 +72,8 @@ const ReviewsChart = ({ ina }) => {
         a.interval.localeCompare(b.interval, undefined, { numeric: true })
       );
   }, [chartData]);
-  console.log(chart)
+  console.log('chart:',chart)
+  console.log('chartData:',chartData)
 
   return (
     <>
