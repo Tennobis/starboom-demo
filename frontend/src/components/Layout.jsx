@@ -104,8 +104,8 @@ const Layout = () => {
                   />
                 }
                 label="Overview"
-                to="/dashboard"
-                active={path === "/dashboard"}
+                to="/"
+                active={path === "/"}
               />
               <SidebarItem
                 icon={
@@ -174,8 +174,8 @@ const Layout = () => {
                 />
               }
               label="Overview"
-              to="/dashboard"
-              active={path === "/dashboard"}
+              to="/"
+              active={path === "/"}
             />
             <SidebarItem
               icon={

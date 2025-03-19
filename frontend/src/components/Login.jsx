@@ -20,7 +20,7 @@ const Login = () => {
     });
 
     if (response.ok) {
-      navigate('/dashboard'); // Redirect to dashboard
+      navigate('/'); // Redirect to dashboard
     } else {
       alert('Invalid credentials');
     }
