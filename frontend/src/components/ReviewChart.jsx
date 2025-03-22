@@ -72,8 +72,6 @@ const ReviewsChart = ({ ina }) => {
         a.interval.localeCompare(b.interval, undefined, { numeric: true })
       );
   }, [chartData]);
-  console.log("chart:", chart);
-  console.log("chartData:", chartData);
 
   return (
     <>
