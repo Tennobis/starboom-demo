@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Download, Info, Star, Users } from "lucide-react";
@@ -63,17 +63,13 @@ const Review = ({
   return (
     <div className="flex gap-4 py-4 md:items-center items-start border-b border-neutral-800 last:border-0">
       <div
-        className={`w-12 h-12 md:w-15 md:h-15  rounded-full flex items-center justify-center  text-white ${hasReplied ? "bg-green-500" : color}`}
+        className={`w-12 h-12 md:w-15 md:h-15  rounded-full flex items-center justify-center  text-white ${
+          hasReplied ? "bg-green-500" : color
+        }`}
       >
         {hasReplied ? (
-          <Icon
-            icon="mdi:tick-all"
-            width="24"
-            height="24"
-            className=""
-          />
+          <Icon icon="mdi:tick-all" width="24" height="24" className="" />
         ) : (
-
           <Icon
             icon="ant-design:alert-filled"
             width="28"
@@ -96,8 +92,8 @@ const Review = ({
                     ? rating > 3
                       ? "fill-[#1EC928]"
                       : rating === 3
-                        ? "fill-[#F7C73B]"
-                        : "fill-[#FF3838]"
+                      ? "fill-[#F7C73B]"
+                      : "fill-[#FF3838]"
                     : "fill-[#393939]"
                 )}
               />
@@ -110,18 +106,18 @@ const Review = ({
           <div className="">
             <Button
               variant="outline"
-              className={`w-[75px] h-[40px] md:hidden rounded-full  ${hasReplied
-                ? "bg-custom text-white border-white"
-                : "bg-white border-neutral-700 text-black"
-                } text-xs font-bold hover:bg-neutral-700 hover:text-white transition-colors`}
+              className={`w-[75px] h-[40px] md:hidden rounded-full  ${
+                hasReplied
+                  ? "bg-custom text-white border-white"
+                  : "bg-white border-neutral-700 text-black"
+              } text-xs font-bold hover:bg-neutral-700 hover:text-white transition-colors`}
               style={{ lineHeight: "32px" }}
               onClick={() => {
                 onReply(); // Call the function
-                window.open(link, '_blank');
+                window.open(link, "_blank");
               }}
             >
-              {hasReplied ? "Replied" : 'Reply'}
-
+              {hasReplied ? "Replied" : "Reply"}
             </Button>
           </div>
         </div>
@@ -129,17 +125,18 @@ const Review = ({
       <div>
         <Button
           variant="outline"
-          className={`w-[75px] hidden md:flex h-[40px] rounded-full ${hasReplied
-            ? "bg-custom text-white border-white"
-            : "bg-white border-neutral-700 text-black"
-            } text-xs font-bold hover:bg-neutral-700 hover:text-white transition-colors`}
+          className={`w-[75px] hidden md:flex h-[40px] rounded-full ${
+            hasReplied
+              ? "bg-custom text-white border-white"
+              : "bg-white border-neutral-700 text-black"
+          } text-xs font-bold hover:bg-neutral-700 hover:text-white transition-colors`}
           style={{ lineHeight: "32px" }}
           onClick={() => {
             onReply(); // Call the function
-            window.open(link, '_blank');
+            window.open(link, "_blank");
           }}
         >
-          {hasReplied ? "Replied" : 'Reply'}
+          {hasReplied ? "Replied" : "Reply"}
         </Button>
       </div>
     </div>
@@ -156,20 +153,23 @@ export default function Notification() {
     milestoneData,
     repliedReviewIds,
     setRepliedReviewIds,
-    toggleSidebar
+    toggleSidebar,
+    count
     // handleReply,
   } = useFilterContext();
   const handleReply = async (reviewId) => {
     try {
       // Send the review ID to the backend
-      await axios.post(`${import.meta.env.VITE_API_ENDPOINT}/api/replied-reviews`, { reviewId });
+      await axios.post(
+        `${import.meta.env.VITE_API_ENDPOINT}/api/replied-reviews`,
+        { reviewId }
+      );
       // Update the local state
       setRepliedReviewIds((prev) => [...prev, reviewId]);
     } catch (error) {
       console.error("Failed to mark review as replied:", error);
     }
   };
-
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-red-500 text-lg">Error: {error}</p>;
@@ -194,14 +194,29 @@ export default function Notification() {
           <div className="flex items-center w-full lg:w-auto justify-between ">
             <h1 className="text-4xl hidden lg:block text-white">Dashboard</h1>
             <div className="flex items-center justify-between w-full ">
-              <img src="/starboom.png" alt="logo" className="lg:hidden block h-14 w-12" />
-              <Icon
-                icon="tabler:menu-deep"
-                width="32"
-                height="32"
-                className="text-white lg:hidden block z-40"
-                onClick={toggleSidebar}
+              <img
+                src="/starboom.png"
+                alt="logo"
+                className="lg:hidden block h-14 w-12"
               />
+              <div className="flex gap-2">
+                {/* <Icon
+                  icon="tabler:bell"
+                  width="32"
+                  height="32"
+                  className="text-white hover:text-white transition-colors"
+                /> */}
+                {/* <span className="text-xs text-white font-bold hidden md:block">
+                  {count}
+                </span> */}
+                <Icon
+                  icon="tabler:menu-deep"
+                  width="32"
+                  height="32"
+                  className="text-white lg:hidden block z-40"
+                  onClick={toggleSidebar}
+                />
+              </div>
             </div>
           </div>
           {/* <Button
@@ -222,7 +237,6 @@ export default function Notification() {
                 Here is your important messages
               </p>
             </div>
-
             {/* Filters */}
             <FilterBar />
           </div>
@@ -240,12 +254,15 @@ export default function Notification() {
                     <h1 className="text-lg">Recent Notifications</h1>
                   </div>
                 </CardTitle>
-                <Info className="h-4 w-4 text-neutral-500" />
+                {/* <Info className="h-4 w-4 text-neutral-500" /> */}
               </CardHeader>
               <CardContent>
                 {negativeReviews.length > 0 ? (
                   negativeReviews.map((review, index) => {
-                    const hasReplied = repliedReviewIds.includes(review.reviewId);
+                    const hasReplied = repliedReviewIds.includes(
+                      review.reviewId
+                    );
+                    setfirst(first + 1);
                     return (
                       <Review
                         key={index}

@@ -68,7 +68,7 @@ export default function ReviewsBreakdown() {
   };
   
   // Example usage:
-  console.log(timeAgo("2025-03-19T09:57:11.809Z"));
+  // console.log(timeAgo("2025-03-19T09:57:11.809Z"));
   
   // Function to get recent reviews
   const getRecentReviews = () => {
@@ -175,7 +175,7 @@ export default function ReviewsBreakdown() {
                       <h1 className="text-lg">Sentiment Analysis</h1>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent>
                   <h1 className="text-white text-xl">{analysis}</h1>
@@ -190,7 +190,7 @@ export default function ReviewsBreakdown() {
                       <h1 className="text-lg">Star Distribution</h1>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -238,7 +238,7 @@ export default function ReviewsBreakdown() {
                     <h1 className="text-lg">Recent Reviews</h1>
                   </div>
                 </CardTitle>
-                <Info className="h-4 w-4 text-neutral-500" />
+                {/* <Info className="h-4 w-4 text-neutral-500" /> */}
               </CardHeader>
               <CardContent className="space-y-1">
                 {recentReviews.length!=0?recentReviews.map((review, index) => (

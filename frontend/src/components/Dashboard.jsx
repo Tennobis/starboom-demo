@@ -159,7 +159,7 @@ export function Dashboard() {
                       <h1 className="text-lg">Total Ratings</h1>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent className="">
                   {/* <div>
@@ -191,7 +191,7 @@ export function Dashboard() {
                       <h1 className="text-lg">Average Ratings</h1>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent>
                   <div className="text-4xl font-bold">
@@ -216,7 +216,7 @@ export function Dashboard() {
                       <h1 className="text-lg">Reviews Earned</h1>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent>
                   <div className="text-4xl font-bold">
@@ -246,7 +246,7 @@ export function Dashboard() {
                     <h1 className="text-lg">Positive vs Negative</h1>
                   </div>
                 </CardTitle>
-                <Info className="h-4 w-4 text-neutral-500" />
+                {/* <Info className="h-4 w-4 text-neutral-500" /> */}
               </CardHeader>
               <CardContent>
                 <div className="space-y-4 mt-3">
@@ -296,7 +296,7 @@ export function Dashboard() {
                     <h1 className="text-lg">Milestone</h1>
                   </div>
                 </CardTitle>
-                <Info className="h-4 w-4 text-neutral-500" />
+                {/* <Info className="h-4 w-4 text-neutral-500" /> */}
               </CardHeader>
               <CardContent>
                 <div className="flex flex-col items-start ">
@@ -373,7 +373,7 @@ export function Dashboard() {
                     <h1 className="text-lg">Negative Review Alert</h1>
                   </div>
                 </CardTitle>
-                <Info className="h-4 w-4 text-neutral-500" />
+                {/* <Info className="h-4 w-4 text-neutral-500" /> */}
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between ">

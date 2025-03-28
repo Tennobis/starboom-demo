@@ -52,7 +52,6 @@ const Layout = () => {
   //   );
   // if (error)
   //   return <p className="text-center text-red-500 text-lg">Error: {error}</p>;
-  console.log(adminShort)
   return (
     <div className="flex h-screen font-[Open_Sauce_Sans] overflow-x-hidden  bg-black text-white">
       {/* Mobile Toggle Button */}

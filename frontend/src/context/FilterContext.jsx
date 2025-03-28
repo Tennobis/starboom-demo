@@ -41,6 +41,7 @@ export const FilterProvider = ({ children }) => {
   const [redOrGreen, setRedOrGreen] = useState(false);
   const [redOrGreenScan, setRedOrGreenScan] = useState(false);
   const [adminShort, setAdminShort] = useState('S')
+  const [count, setCount] = useState(0)
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -157,6 +158,7 @@ export const FilterProvider = ({ children }) => {
       // Show notification only if milestone changed
       if (response.data.current !== response.data.previous) {
         setShowMilestoneNotification(true);
+        setCount(count +1)
       }
     } catch (error) {
       console.error("Failed to update milestone:", error);
@@ -267,7 +269,7 @@ export const FilterProvider = ({ children }) => {
       // Filter negative reviews
       const negativeReviews = reviewsData.filter((review) =>review.stars < 3 && !review.error);
       setNegativeReviews(negativeReviews);
-
+      negativeReviews??setCount(count + negativeReviews.length)
       setLoading(false);
       return data;
     } catch (err) {
@@ -406,7 +408,8 @@ export const FilterProvider = ({ children }) => {
         toggleSidebar,
         redOrGreen,
         redOrGreenScan,
-        adminShort
+        adminShort,
+        count
       }}
     >
       {children}

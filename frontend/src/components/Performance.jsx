@@ -672,7 +672,7 @@ export default function Performance() {
                     </h1>
                   </div>
                 </CardTitle>
-                <Info className="h-4 w-4 text-neutral-500" />
+                {/* <Info className="h-4 w-4 text-neutral-500" /> */}
               </CardHeader>
               <CardContent>
                 <div className="flex-col md:flex-row flex  items-start  pt-6 justify-between mt-2 md:items-center gap-4">
@@ -722,7 +722,7 @@ export default function Performance() {
                       </div>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col items-start mt-2 justify-between gap-5 ">
@@ -752,7 +752,7 @@ export default function Performance() {
                       </div>
                     </div>
                   </CardTitle>
-                  <Info className="h-4 w-4 text-neutral-500" />
+                  {/* <Info className="h-4 w-4 text-neutral-500" /> */}
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col items-start mt-2 justify-between gap-5">
@@ -782,7 +782,7 @@ export default function Performance() {
                   <h1 className="text-lg">Your Progress</h1>
                 </div>
               </CardTitle>
-              <Info className="h-4 w-4 text-neutral-500" />
+              {/* <Info className="h-4 w-4 text-neutral-500" /> */}
             </CardHeader>
             <CardContent className="">
               {/* Using our new separated progress component */}
@@ -808,7 +808,7 @@ export default function Performance() {
                   <h1 className="text-lg">Competitor Benchmarking</h1>
                 </div>
               </CardTitle>
-              <Info className="h-4 w-4 text-neutral-500" />
+              {/* <Info className="h-4 w-4 text-neutral-500" /> */}
             </CardHeader>
             <CardContent>
               <div className="flex-col md:flex-row flex pt-6 gap-5 items-start justify-between mt-2 md:items-center">
