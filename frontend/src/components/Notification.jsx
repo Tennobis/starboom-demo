@@ -270,7 +270,7 @@ export default function Notification() {
                   />
                 )}
                 {showMilestoneNotification &&
-                  (milestoneData.previous !== "Beginner" ? (
+                  (milestoneData.current !== "Beginner" ? (
                     <Message
                       initial={milestoneData.current[0]}
                       content={`Let the adventure continue!`}
