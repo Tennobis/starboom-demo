@@ -47,7 +47,7 @@ async function getPlaceDetails(placeId) {
 }
 async function main(req, res) {
   try {
-    res.setHeader('Access-Control-Allow-Origin', 'https://sdfashion.onrender.com');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     const inputText = req.query.query;
     if (!inputText || typeof inputText !== "string") {
       return res

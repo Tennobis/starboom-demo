@@ -41,8 +41,8 @@ const FilterBar = () => {
               <SelectItem className="cursor-pointer" value="sd-fashion">
                 SD Fashion
               </SelectItem>
-              {/* <SelectItem value="complex-bar">Complex Bar</SelectItem>
-              <SelectItem value="bad-bar">Bad Bar</SelectItem> */}
+              <SelectItem className="cursor-pointer" value="complex-bar">Complex Bar</SelectItem>
+              <SelectItem className="cursor-pointer" value="bad-bar">Bad Bar</SelectItem>
             </SelectContent>
           </Select>
         </div>

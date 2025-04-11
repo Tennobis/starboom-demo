@@ -54,10 +54,16 @@ const ProgressLine = ({ completed, current, totalSegments = 16 }) => {
       else if (width < 1192) {
         setTotal(9)
       }
-      else if (width < 1250) {
-        setTotal(12)
+      else if (width < 1230) {
+        setTotal(11)
+      }
+      else if (width < 1270) {
+        setTotal(11)
       }
       else if (width < 1300) {
+        setTotal(12)
+      }
+      else if(width < 1335) {
         setTotal(13)
       }
       else if (width < 1406) {
@@ -70,7 +76,7 @@ const ProgressLine = ({ completed, current, totalSegments = 16 }) => {
         setTotal(17)
       }
       else if (width < 1600) {
-        setTotal(19)
+        setTotal(18)
       }
       else {
         setTotal(21); // full amount on desktop
@@ -355,7 +361,7 @@ const ProgressSection = ({ milestones, currentMilestone, reviewsCount }) => {
           return (
             <div
               key={`mobile-progress-${index}`}
-              className="flex items-center mb-8 relative"
+              className="flex items-center mb-6 relative"
             >
               <div className="flex">
                 {/* Badge and progress circle container */}
@@ -369,7 +375,7 @@ const ProgressSection = ({ milestones, currentMilestone, reviewsCount }) => {
                   />
 
                   {/* Progress circle after badge */}
-                  <div className="mt-6">
+                  <div className="mt-5">
                     <div
                       className={`left-1/2 top-1/2 -translate-y-1/2 -translate-x-3 w-6 h-6 rounded-full flex items-center justify-center z-10
               ${reviewsCount > milestone.maxReviews

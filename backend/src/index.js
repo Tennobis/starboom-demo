@@ -132,9 +132,14 @@ app.get('/api/get-counts', async (req, res) => {
     const redOrGreen = currentWeekClicks > previousWeekClicks;
     const redOrGreenScan = currentWeekScans > previousWeekScans;
 
-    const scanRate = redOrGreenScan ? ((currentWeekScans - previousWeekScans) / currentWeekScans) * 100 : ((previousWeekScans - currentWeekScans) / previousWeekScans) * 100;
-    const clickRate = redOrGreen ? ((currentWeekClicks - previousWeekClicks) / previousWeekClicks) * 100 : ((previousWeekClicks - currentWeekClicks) / currentWeekClicks) * 100;
-  
+    let scanRate = redOrGreenScan ? ((currentWeekScans - previousWeekScans) / currentWeekScans) * 100 : ((previousWeekScans - currentWeekScans) / previousWeekScans) * 100;
+    let clickRate = redOrGreen ? ((currentWeekClicks - previousWeekClicks) / currentWeekClicks) * 100 : ((previousWeekClicks - currentWeekClicks) /  previousWeekClicks) * 100;
+   if (isNaN(scanRate)) {
+      scanRate = 0;
+    }
+    if (isNaN(clickRate)) {
+      clickRate = 0;
+    }
     res.send({
       totalScans,
       totalButtonClicks,
